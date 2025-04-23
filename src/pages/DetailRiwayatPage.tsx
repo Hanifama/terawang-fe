@@ -6,39 +6,120 @@ import "leaflet/dist/leaflet.css";
 import { useParams } from 'react-router-dom';
 import bgImage from "../assets/bg.jpg";
 
+import L from "leaflet";
+import treeIconUrl from "../assets/icon-tree.png";
+
 // Dummy data untuk contoh
 const dummyData = [
     {
-        namaPohon: "Pisang Raja",
+        namaPohon: "Beringin",
         surveyor: "Haris",
         tanggal: "2025-04-20",
         idDevice: "DEV-001",
         diameterLuar: 60,
         diameterDalam: 40,
-        lokasi: [-6.200000, 106.816666],
+        lokasi: [-6.9219, 107.6078], // Alun-Alun Bandung
         image: bgImage,
     },
     {
-        namaPohon: "Pisang Ambon",
+        namaPohon: "Mahoni",
         surveyor: "Ayu",
         tanggal: "2025-04-19",
         idDevice: "DEV-002",
         diameterLuar: 70,
         diameterDalam: 50,
-        lokasi: [-6.201234, 106.817234],
+        lokasi: [-6.9025, 107.6186], // Gedung Sate
         image: bgImage,
     },
     {
-        namaPohon: "Pisang Kepok",
+        namaPohon: "Tanjung",
         surveyor: "Budi",
         tanggal: "2025-04-18",
         idDevice: "DEV-003",
         diameterLuar: 80,
         diameterDalam: 55,
-        lokasi: [-6.202345, 106.818345],
+        lokasi: [-6.9003, 107.6181], // Gasibu
+        image: bgImage,
+    },
+    {
+        namaPohon: "Trembesi",
+        surveyor: "Sari",
+        tanggal: "2025-04-17",
+        idDevice: "DEV-004",
+        diameterLuar: 85,
+        diameterDalam: 60,
+        lokasi: [-6.9176, 107.6107], // Braga
+        image: bgImage,
+    },
+    {
+        namaPohon: "Ketapang",
+        surveyor: "Andi",
+        tanggal: "2025-04-16",
+        idDevice: "DEV-005",
+        diameterLuar: 75,
+        diameterDalam: 52,
+        lokasi: [-6.8986, 107.6191], // Taman Lansia
+        image: bgImage,
+    },
+    {
+        namaPohon: "Tabebuya",
+        surveyor: "Haris",
+        tanggal: "2025-04-15",
+        idDevice: "DEV-006",
+        diameterLuar: 65,
+        diameterDalam: 45,
+        lokasi: [-6.9167, 107.6103], // Balai Kota
+        image: bgImage,
+    },
+    {
+        namaPohon: "Palem",
+        surveyor: "Dina",
+        tanggal: "2025-04-14",
+        idDevice: "DEV-007",
+        diameterLuar: 90,
+        diameterDalam: 70,
+        lokasi: [-6.8898, 107.6045], // Cihampelas Walk
+        image: bgImage,
+    },
+    {
+        namaPohon: "Angsana",
+        surveyor: "Budi",
+        tanggal: "2025-04-13",
+        idDevice: "DEV-008",
+        diameterLuar: 78,
+        diameterDalam: 55,
+        lokasi: [-6.8837, 107.6111], // Dago
+        image: bgImage,
+    },
+    {
+        namaPohon: "Akasia",
+        surveyor: "Ayu",
+        tanggal: "2025-04-12",
+        idDevice: "DEV-009",
+        diameterLuar: 68,
+        diameterDalam: 50,
+        lokasi: [-6.8915, 107.6107], // ITB
+        image: bgImage,
+    },
+    {
+        namaPohon: "Pinus",
+        surveyor: "Haris",
+        tanggal: "2025-04-11",
+        idDevice: "DEV-010",
+        diameterLuar: 85,
+        diameterDalam: 60,
+        lokasi: [-6.9149, 107.6015], // Stasiun Bandung
         image: bgImage,
     },
 ];
+
+// Custom icon pohon
+const TreeIcon: L.Icon = L.icon({
+    iconUrl: treeIconUrl,
+    iconSize: [35, 45],
+    iconAnchor: [17, 45],
+    popupAnchor: [0, -40],
+});
 
 const DetailRiwayatPage: React.FC = () => {
     const { idDevice } = useParams();
@@ -69,7 +150,7 @@ const DetailRiwayatPage: React.FC = () => {
                 <Grid container spacing={4}>
                     {/* Kiri - Gambar & Info Pohon */}
                     <Grid item xs={12} md={6}>
-                        <Box sx={{ textAlign: "center", mb: 2 }}>
+                        <Box sx={{ textAlign: "center" }}>
                             <img
                                 src={image}
                                 alt="Pohon"
@@ -81,7 +162,7 @@ const DetailRiwayatPage: React.FC = () => {
                                 }}
                             />
                         </Box>
-
+                        <h1 className="font-semibold text-xl mb-">Detail Data</h1>
                         {/* Info Dua Kolom */}
                         <Grid container spacing={2}>
                             {/* Baris 1 */}
@@ -247,22 +328,49 @@ const DetailRiwayatPage: React.FC = () => {
                 </Grid>
 
                 {/* Map Section */}
-                <Box sx={{ mt: 4 }}>
+                <Box sx={{ mt: 4, position: "relative" }}>
                     <MapContainer
                         center={validLokasi}
                         zoom={13}
                         scrollWheelZoom={false}
-                        style={{ height: "400px", width: "100%", borderRadius: "8px" }}
+                        style={{
+                            height: "400px",
+                            width: "100%",
+                            borderRadius: "8px",
+                            position: "relative",
+                        }}
                     >
                         <TileLayer
                             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         />
-                        <Marker position={validLokasi}>
+                        <Marker icon={TreeIcon} position={validLokasi}>
                             <Popup>{namaPohon}</Popup>
                         </Marker>
                     </MapContainer>
+
+                    {/* Legenda */}
+                    <div
+                        style={{
+                            position: "absolute",
+                            bottom: "0",
+                            right: "0",
+                            backgroundColor: "white",
+                            padding: "10px",
+                            borderRadius: "8px",
+                            boxShadow: "0 0 6px rgba(0,0,0,0.2)",
+                            fontSize: "14px",
+                            width: "250px",
+                            zIndex: 1000,
+                        }}
+                    >
+                        <div className="flex items-center space-x-2 p-2 bg-white">
+                            <img src={treeIconUrl} alt="Tree Icon" className="w-8 h-8" />
+                            <strong className="text-sm font-medium text-gray-800">Letak Pohon {namaPohon}</strong>
+                        </div>
+                    </div>
                 </Box>
+
             </Box>
         </DashboardLayout>
     );

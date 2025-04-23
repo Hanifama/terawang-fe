@@ -76,41 +76,43 @@ const ManagementUserPage: React.FC = () => {
 
     return (
         <DashboardLayout>
-            <Button
-                variant="contained"
-                color="primary"
-                startIcon={<Add />}
-                onClick={() => navigate("/user/add")}
-                sx={{ mb: 2 }}
-            >
-                Tambah Pengguna
-            </Button>
+            <section className="min-h-[70vh]">
+                <Button
+                    variant="contained"
+                    color="primary"
+                    startIcon={<Add />}
+                    onClick={() => navigate("/user/add")}
+                    sx={{ mb: 2, backgroundColor: "#66BB6A" }}
+                >
+                    Tambah Pengguna
+                </Button>
 
-            <CustomTable
-                columns={columns}
-                data={data}
-                loading={isLoading}
-                totalCount={totalUsers}
-                page={page}
-                limit={rowsPerPage}
-                onPageChange={setPage}
-                onRowsPerPageChange={setRowsPerPage}
-            />
+                <CustomTable
+                    columns={columns}
+                    data={data}
+                    loading={isLoading}
+                    totalCount={totalUsers}
+                    page={page}
+                    limit={rowsPerPage}
+                    onPageChange={setPage}
+                    onRowsPerPageChange={setRowsPerPage}
+                />
 
-            <Dialog open={openConfirm} onClose={handleCloseConfirm}>
-                <DialogTitle>Konfirmasi Hapus</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>Apakah Anda yakin ingin menghapus pengguna ini?</DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleCloseConfirm} color="primary">
-                        Batal
-                    </Button>
-                    <Button onClick={handleConfirmDelete} color="error">
-                        Hapus
-                    </Button>
-                </DialogActions>
-            </Dialog>
+                <Dialog open={openConfirm} onClose={handleCloseConfirm}>
+                    <DialogTitle>Konfirmasi Hapus</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>Apakah Anda yakin ingin menghapus pengguna ini?</DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleCloseConfirm} color="primary">
+                            Batal
+                        </Button>
+                        <Button onClick={handleConfirmDelete} color="error">
+                            Hapus
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </section>
         </DashboardLayout>
     );
 };

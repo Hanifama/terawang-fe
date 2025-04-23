@@ -47,7 +47,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
 }) => {
     return (
         <Paper sx={{ borderRadius: 2, boxShadow: 3, overflow: "hidden" }}>
-            <TableContainer sx={{ maxHeight: 400, maxWidth: 960, overflowX: "auto", display: "block" }}>
+            <TableContainer sx={{ maxHeight: 400, maxWidth: "auto", overflowX: "auto", display: "block" }}>
                 <Table stickyHeader>
                     <TableHead sx={{ backgroundColor: "#f5f5f5" }}>
                         <TableRow>

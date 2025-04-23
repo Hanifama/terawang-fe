@@ -11,6 +11,9 @@ import AddUser from "../components/managementUser/AddUser";
 import DetailUser from "../components/managementUser/detailUser";
 import RiwayatPage from "../pages/RiwayatPage";
 import DetailRiwayatPage from "../pages/DetailRiwayatPage";
+import ProfilePage from "../pages/Profile";
+import UpdateProfile from "../components/profile/UpdateProfile";
+import UpdatePassword from "../components/profile/UpdatePassword";
 
 export interface RouteConfig {
   path: string;
@@ -32,6 +35,10 @@ const routes: RouteConfig[] = [
   { path: "/management-user", component: () => <ProtectedRoute component={ManagementUserPage} /> },
   { path: "/user/add", component: () => <ProtectedRoute component={AddUser} /> },
   { path: "/user/detail/:guid", component: () => <ProtectedRoute component={DetailUser} /> },
+
+  { path: "/profile", component: () => <ProtectedRoute component={ProfilePage} /> },
+  { path: "/update-profile", component: () => <ProtectedRoute component={UpdateProfile} /> },
+  { path: "/update-password", component: () => <ProtectedRoute component={UpdatePassword} /> },
 
 ];
 
