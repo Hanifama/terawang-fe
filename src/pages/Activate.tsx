@@ -39,7 +39,7 @@ const ActivateAccount: React.FC = () => {
     }
 
     toast.success("Selamat, Anda berhasil mengaktifkan akun!", { position: "top-right", autoClose: 2000 });
-    setTimeout(() => navigate("/dashboard"), 2000);
+    setTimeout(() => navigate("/login"), 2000);
   }, [formData, activateUser, navigate]);
 
   return (

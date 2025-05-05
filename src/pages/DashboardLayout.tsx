@@ -8,21 +8,40 @@ interface DashboardLayoutProps {
   children: ReactNode;
 }
 
+// Lebar sidebar tetap
+const SIDEBAR_WIDTH = 240;
+
 const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
   return (
-    <Box sx={{ display: "flex", overflowX: "hidden", }}>
+    <Box sx={{ display: "flex", width: "100vw", overflowX: "hidden" }}>
       {/* Sidebar */}
-      <Sidebar />
+      <Box
+        component="nav"
+        sx={{
+          width: { sm: SIDEBAR_WIDTH },
+          flexShrink: { sm: 0 },
+        }}
+      >
+        <Sidebar />
+      </Box>
 
       {/* Konten utama */}
-      <Box sx={{ flexGrow: 1, ml: 0 }}>
+      <Box
+        sx={{
+          flexGrow: 1,
+          width: { sm: `calc(100% - ${SIDEBAR_WIDTH}px)` },
+          overflowX: "hidden",
+          px: { xs: 2, sm: 4 }, 
+          pt: 10, 
+        }}
+      >
         {/* Navbar */}
         <Navbar />
 
         {/* Konten Dinamis */}
-        <Box sx={{ pt: 10 }}>
-          <Container>{children}</Container>
-        </Box>
+        <Container maxWidth={false} disableGutters>
+          {children}
+        </Container>
       </Box>
     </Box>
   );

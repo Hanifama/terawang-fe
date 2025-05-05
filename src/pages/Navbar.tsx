@@ -51,7 +51,7 @@ const Navbar = () => {
         >
             <Toolbar>
                 <Typography variant="h6" sx={{ flexGrow: 1, color: "#1C3D32" }}>
-                    Dashboard
+                  
                 </Typography>
                 <Box sx={{ display: "flex", alignItems: "center", gap: 1 }} onClick={handleMenuOpen}>
                     <IconButton sx={{ p: 0 }}>

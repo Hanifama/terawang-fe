@@ -1,5 +1,5 @@
 import { Drawer, List, ListItem, ListItemIcon, ListItemText, Box, Typography, Divider } from "@mui/material";
-import { MapOutlined, Logout, GroupOutlined, HistoryEduOutlined } from "@mui/icons-material";
+import { MapOutlined, Logout, GroupOutlined, HistoryEduOutlined, ForestOutlined, DeviceHub } from "@mui/icons-material";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -78,7 +78,9 @@ const Sidebar: React.FC = () => {
 
       <List>
         {[{ text: "Dashboard", icon: <MapOutlined />, path: "/dashboard" },
-        { text: "Riwayat Survey", icon: <HistoryEduOutlined />, path: "/riwayat" },
+        { text: "Managemen Pohon", icon: <ForestOutlined />, path: "/tree" },
+        { text: "Managemen Device", icon: <DeviceHub />, path: "/device" },
+        { text: "Riwayat Survey", icon: <HistoryEduOutlined />, path: "/survey" },
         { text: "Management User", icon: <GroupOutlined />, path: "/management-user" }].map(({ text, icon, path }) => (
           <ListItem
             key={text}

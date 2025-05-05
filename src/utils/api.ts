@@ -1,25 +1,17 @@
 import axios, { AxiosInstance, InternalAxiosRequestConfig } from "axios";
 import { tokenService } from "../services/authService";
 
-// API untuk layanan utama (Menggunakan userToken)
+// API untuk layanan Auth
 const api: AxiosInstance = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
+    baseURL: import.meta.env.VITE_API_SSO_URL,
     headers: {
         Accept: "application/json",
     },
 });
 
-// API untuk MITRA (Menggunakan appToken)
-const mitraApi: AxiosInstance = axios.create({
-    baseURL: import.meta.env.VITE_API_MITRA_URL,
-    headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-    },
-});
-
-const mitraApiPublic: AxiosInstance = axios.create({
-    baseURL: import.meta.env.VITE_API_MITRA_URL,
+// API untuk Project Layanan Aplikasi
+const projectApi: AxiosInstance = axios.create({
+    baseURL: import.meta.env.VITE_API_PROJECT_URL,
     headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -42,7 +34,7 @@ api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
     return config;
 });
 
-mitraApi.interceptors.request.use((config: InternalAxiosRequestConfig) => {
+projectApi.interceptors.request.use((config: InternalAxiosRequestConfig) => {
     const appToken = tokenService.getAppToken();
 
     if (appToken) {
@@ -52,4 +44,4 @@ mitraApi.interceptors.request.use((config: InternalAxiosRequestConfig) => {
     return config;
 });
 
-export { api, mitraApi, mitraApiPublic };
+export { api, projectApi };

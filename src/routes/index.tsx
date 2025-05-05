@@ -14,6 +14,9 @@ import DetailRiwayatPage from "../pages/DetailRiwayatPage";
 import ProfilePage from "../pages/Profile";
 import UpdateProfile from "../components/profile/UpdateProfile";
 import UpdatePassword from "../components/profile/UpdatePassword";
+import TreePage from "../pages/TreePage";
+import DevicePage from "../pages/DevicePage";
+import SurveyPage from "../pages/SurveyPage";
 
 export interface RouteConfig {
   path: string;
@@ -31,6 +34,14 @@ const routes: RouteConfig[] = [
 
   { path: "/riwayat", component: () => <ProtectedRoute component={RiwayatPage} /> },
   { path: "/riwayat-detail/:idDevice", component: () => <ProtectedRoute component={DetailRiwayatPage} /> },
+
+  { path: "/tree", component: () => <ProtectedRoute component={TreePage} /> },
+  { path: "/tree/:guid", component: () => <ProtectedRoute component={DetailRiwayatPage} /> },
+
+  { path: "/device", component: () => <ProtectedRoute component={DevicePage} /> },
+  { path: "/device/:guid", component: () => <ProtectedRoute component={DetailRiwayatPage} /> },
+
+  { path: "/survey", component: () => <ProtectedRoute component={SurveyPage} /> },
 
   { path: "/management-user", component: () => <ProtectedRoute component={ManagementUserPage} /> },
   { path: "/user/add", component: () => <ProtectedRoute component={AddUser} /> },
